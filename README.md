@@ -1,0 +1,1 @@
+Bundle Symfony for using JavaScript Library celtic34fr/select2vanilla
