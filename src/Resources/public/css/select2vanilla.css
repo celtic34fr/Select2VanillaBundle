@@ -1,0 +1,97 @@
+.select2vanilla {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.select2vanilla label {
+    min-width: 0px;
+}
+
+.select2vanilla .form-errors {
+    margin-top: 5px;
+    color: #c00;
+}
+
+.s2v__customSelect {
+    position: relative;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    min-height: 40px;
+    background: #fff;
+    cursor: text;
+}
+
+.s2v__selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.s2v__selection input.s2v__search {
+    border: none;
+    flex: 1;
+    min-width: 120px;
+    padding: 5px;
+    outline: none;
+}
+
+.s2v__selected {
+    position: relative;
+    background: #e0e0e0;
+    padding: 5px 28px 5px 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.s2v__remove {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.s2v__remove:hover {
+    color: #c00;
+}
+
+.s2v__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000;
+}
+
+.s2v__options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.s2v__options li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.s2v__options li:hover {
+    background-color: #f0f0f0;
+}

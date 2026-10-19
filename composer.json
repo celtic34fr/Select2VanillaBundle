@@ -1,0 +1,30 @@
+{
+    "name": "select2-vanilla/bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle for using the vanilla JavaScript library celtic34fr/select2vanilla as a FormType",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Select2VanillaBundle"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Select2VanillaBundle\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/celtic34fr/select2vanilla.git"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "symfony/framework-bundle": "^6.4|^7.0",
+        "symfony/twig-bundle": "^6.4|^7.0",
+        "symfony/form": "^6.4|^7.0",
+        "symfony/options-resolver": "^6.4|^7.0",
+        "celtic34fr/select2vanilla": "^0.1"
+    }
+}

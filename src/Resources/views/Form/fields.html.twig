@@ -1,0 +1,11 @@
+{% block select2_widget -%}
+    {% set attr = attr|merge({
+        'class': (attr.class|default('')) ~ ' js-select2-vanilla',
+        'data-select2-vanilla': '1',
+        'data-multiple': multiple ? 'true' : 'false',
+        'data-placeholder': placeholder|default('Choisir ou saisir'),
+        'data-remove-icon-html': remove_icon_html|default('×'),
+    }) %}
+
+    {{ block('choice_widget_collapsed') }}
+{%- endblock %}

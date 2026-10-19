@@ -4,4 +4,33 @@
 ### Symfony ###
 # Template Symfony not found
 
-./AGENTS.md
+# Symfony
+/var/
+/public/bundles/
+/public/build/
+
+# Composer
+/vendor/
+
+# Environment files
+/.env.local
+/.env.*.local
+
+# PHP
+.phpunit.result.cache
+phpunit.xml
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+/coverage/
+
+/AGENTS.md
