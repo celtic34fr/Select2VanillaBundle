@@ -13,6 +13,11 @@
             "Select2VanillaBundle\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Select2VanillaBundle\\Tests\\": "tests/"
+        }
+    },
     "repositories": [
         {
             "type": "vcs",
@@ -26,5 +31,9 @@
         "symfony/form": "^6.4|^7.0",
         "symfony/options-resolver": "^6.4|^7.0",
         "celtic34fr/select2vanilla": "^0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6|^10.5|^11.0",
+        "symfony/form-test": "^6.4|^7.0"
     }
 }

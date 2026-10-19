@@ -130,6 +130,38 @@ Le code JavaScript/CSS de `celtic34fr/select2vanilla` est vendored dans :
 
 Le fichier `select2-vanilla-init.js` assure l'amorçage depuis les `data-*` du thème Twig.
 
+## Lancer les tests
+
+Le bundle dispose de tests unitaires pour valider le bon fonctionnement du `Select2Type` et de la configuration DI.
+
+### Prérequis
+
+Les dépendances de développement sont requises :
+
+```bash
+composer install --dev
+```
+
+### Exécution
+
+Depuis la racine du bundle :
+
+```bash
+vendor/bin/phpunit
+```
+
+Les tests couvrent :
+
+- Le préfixe de bloc `select2` du `Select2Type`
+- Les options par défaut (`remove_icon_html`, `choices`, etc.)
+- La personnalisation de l'icône de suppression
+- L'héritage de `ChoiceType` (placeholder, multiple)
+- Le support des entités Doctrine
+- La validation et la récupération des données soumises
+- Le chargement de la configuration globale (`select2_vanilla.yaml`)
+
+---
+
 ## Licence
 
 MIT
