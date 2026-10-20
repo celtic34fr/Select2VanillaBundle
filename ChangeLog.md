@@ -1,6 +1,6 @@
 # ChangeLog — Select2VanillaBundle
 
-## [0.1.0] — 2026-10-19
+## [0.1.0] — 2026-10-20
 
 Première version du bundle Symfony `Select2VanillaBundle`.
 
@@ -33,7 +33,7 @@ Première version du bundle Symfony `Select2VanillaBundle`.
     ],
     "require": {
         "select2-vanilla/bundle": "*",
-        "celtic34fr/select2vanilla": "^0.1"
+        "celtic34fr/select2vanilla": "dev-master"
     }
 }
 ```
@@ -95,14 +95,19 @@ $builder->add('category', Select2Type::class, [
 
 ### 🔧 Dépendances
 
-- `celtic34fr/select2vanilla` (^0.1) : librairie JavaScript vanilla vendored et déclarée via Composer.
-- Symfony FrameworkBundle, TwigBundle, Form, OptionsResolver (^6.4 | ^7.0).
+- `celtic34fr/select2vanilla` (dev-master) : librairie JavaScript vanilla vendored et déclarée via Composer.
+- Symfony FrameworkBundle, TwigBundle, Form, OptionsResolver (^8.0).
 
 ### 🖥️ Compatibilité
 
-- Compatible avec **toutes les versions de Symfony**, y compris antérieures à la 6.2.
+- Compatible avec **Symfony ^8.0** (testé avec Symfony 8.1).
 - **Aucune dépendance à Asset Mapper, npm ou Node.js**.
 - Les ressources sont exposées via le vendoring classique (`assets:install`).
+
+### 🧪 Tests
+
+- **8 tests unitaires** couvrant le `Select2Type` et la configuration DI (tous passés avec PHPUnit 11.5).
+- Les tests couvrent : préfixe de bloc, options par défaut, icône de suppression personnalisable, héritage de `ChoiceType`, support des entités Doctrine, validation et récupération des données soumises, chargement de la configuration globale.
 
 ### 🗺️ Feuille de route (TODO)
 

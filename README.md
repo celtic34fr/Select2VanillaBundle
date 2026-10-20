@@ -8,6 +8,8 @@ Bundle Symfony permettant d'utiliser la librairie JavaScript vanilla [celtic34fr
 - Rendu Twig dédié (`select2_widget`) qui ajoute les attributs `data-*` nécessaires à l'initialisation JavaScript.
 - Gestion de la sélection multiple avec affichage des choix sous forme de "pills" et bouton de suppression personnalisable (`remove_icon_html`).
 - Assets JS/CSS vendored et exposés via `assets:install`.
+- Compatible **Symfony ^8.0** (testé avec Symfony 8.1).
+- **8 tests unitaires** couvrant le `Select2Type` et la configuration DI (tous passés).
 
 ## Installation
 

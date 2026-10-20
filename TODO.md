@@ -6,9 +6,11 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 
 ## 1. Tests (non-régression)
 
-### Tests unitaires existants (déjà implémentés)
+### Tests unitaires existants (déjà implémentés et passés)
 - [x] `Select2TypeTest` : préfixe de bloc, options par défaut, icône de suppression, héritage `ChoiceType`, entité Doctrine, données soumises
 - [x] `ConfigurationTest` : configuration par défaut et personnalisée (`remove_icon_html`, `placeholder`, `multiple`)
+
+**Statut :** 8 tests unitaires, tous passés avec PHPUnit 11.5 sous Symfony 8.1.
 
 ### Tests à ajouter (priorité haute)
 
@@ -84,11 +86,13 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 
 ## 4. Versions
 
-### Version 0.1.0 (actuelle)
+### Version 0.1.0 (actuelle — tag créé)
 - Bundle fonctionnel pour sélection simple et multiple
 - Support des tableaux et des entités Doctrine
 - Thème Twig et initialisation JavaScript automatique
-- Tests unitaires minimums
+- 8 tests unitaires passés (PHPUnit 11.5, Symfony 8.1)
+- Compatible Symfony ^8.0
+- Dépendance `celtic34fr/select2vanilla` en `dev-master`
 
 ### Version 0.2.0 (prochaine étape)
 - Ajout des tests Twig et fonctionnels

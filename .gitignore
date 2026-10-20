@@ -11,14 +11,17 @@
 
 # Composer
 /vendor/
+/composer.lock
 
 # Environment files
+/.env
 /.env.local
 /.env.*.local
 
 # PHP
 .phpunit.result.cache
 phpunit.xml
+.phpunit.cache/
 
 # IDE
 .idea/

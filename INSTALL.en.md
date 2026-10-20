@@ -5,11 +5,11 @@ This bundle allows you to use the vanilla JavaScript library [celtic34fr/select2
 ## Requirements
 
 - PHP ^8.1
-- Symfony FrameworkBundle ^6.4 or ^7.0
-- Symfony TwigBundle ^6.4 or ^7.0
-- Symfony Form ^6.4 or ^7.0
+- Symfony FrameworkBundle ^8.0
+- Symfony TwigBundle ^8.0
+- Symfony Form ^8.0
 
-The bundle is compatible with **all Symfony versions**, including those prior to 6.2. It does **not** use Asset Mapper and does not require it.
+The bundle is compatible with **Symfony ^8.0** (tested with Symfony 8.1). It does **not** use Asset Mapper and does not require it.
 
 ---
 
