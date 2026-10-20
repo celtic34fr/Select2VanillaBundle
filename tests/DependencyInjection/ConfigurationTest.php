@@ -15,7 +15,7 @@ class ConfigurationTest extends TestCase
 
         $config = $processor->processConfiguration(
             $configuration,
-            [['select2_vanilla' => []]]
+            [[]]
         );
 
         self::assertSame('×', $config['remove_icon_html']);
@@ -30,11 +30,13 @@ class ConfigurationTest extends TestCase
 
         $config = $processor->processConfiguration(
             $configuration,
-            [['select2_vanilla' => [
-                'remove_icon_html' => '<i class="fa fa-times"></i>',
-                'placeholder' => 'Sélectionner...',
-                'multiple' => true,
-            ]]]
+            [
+                [
+                    'remove_icon_html' => '<i class="fa fa-times"></i>',
+                    'placeholder' => 'Sélectionner...',
+                    'multiple' => true,
+                ],
+            ]
         );
 
         self::assertSame('<i class="fa fa-times"></i>', $config['remove_icon_html']);

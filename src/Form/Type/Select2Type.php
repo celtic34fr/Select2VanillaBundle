@@ -13,10 +13,6 @@ class Select2Type extends ChoiceType
         parent::configureOptions($resolver);
 
         $resolver->setDefaults([
-            'attr' => array_merge(
-                $resolver->getDefault('attr') ?? [],
-                ['class' => 'js-select2-vanilla']
-            ),
             'remove_icon_html' => '×',
         ]);
     }
