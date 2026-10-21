@@ -3,6 +3,11 @@
 Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliorer sa couverture de tests et préparer la version 1.0.0.
 
 ---
+## 0. Configuration de l'application hôte (une fois)
+
+- [x] `APP_SECRET` : défini dans `.env` / variables d'environnement de l'application consommante (côté application, pas dans le bundle lui-même)
+
+---
 
 ## 1. Tests (non-régression)
 

@@ -14,6 +14,7 @@ Première version du bundle Symfony `Select2VanillaBundle`.
   - `select2-vanilla-init.js` : script d'initialisation automatique au `DOMContentLoaded` sur tous les éléments `.js-select2-vanilla`.
 - **CSS vendored** : styles du composant custom select, des pills de sélection, et de la croix de suppression positionnée en haut-droite.
 - **Configuration Symfony** : `select2_vanilla.remove_icon_html`, `select2_vanilla.placeholder`, `select2_vanilla.multiple` via `config/packages/select2_vanilla.yaml`.
+- **Asset Mapper** : préconfiguration automatique de `framework.asset_mapper.paths` pour exposer les assets de `celtic34fr/select2vanilla` sous le préfixe `select2vanilla` (nécessite `symfony/asset-mapper`).
 
 ### 📦 Installation
 

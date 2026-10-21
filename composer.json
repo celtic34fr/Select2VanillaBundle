@@ -36,5 +36,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6|^10.5|^11.0"
+    },
+    "suggest": {
+        "symfony/asset-mapper": "Pour mapper automatiquement les assets JS/CSS de select2vanilla via Asset Mapper"
     }
 }
