@@ -32,7 +32,7 @@
         "symfony/twig-bundle": "^8.0",
         "symfony/form": "^8.0",
         "symfony/options-resolver": "^8.0",
-        "celtic34fr/select2vanilla": "dev-main"
+        "celtic34fr/select2vanilla": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6|^10.5|^11.0"
