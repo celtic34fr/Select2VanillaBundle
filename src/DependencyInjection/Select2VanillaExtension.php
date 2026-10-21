@@ -25,17 +25,6 @@ class Select2VanillaExtension extends Extension
             $container->setParameter('select2_vanilla.asset_path', $installPath . '/src');
         }
 
-        // Préconfiguration best-effort de AssetMapper (si disponible)
-        if ($installPath && interface_exists('Symfony\Component\AssetMapper\AssetMapperInterface')) {
-            $container->prependExtensionConfig('framework', [
-                'asset_mapper' => [
-                    'paths' => [
-                        $installPath . '/src' => 'select2vanilla',
-                    ],
-                ],
-            ]);
-        }
-
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
     }
