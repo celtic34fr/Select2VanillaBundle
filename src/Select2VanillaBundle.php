@@ -10,7 +10,14 @@ class Select2VanillaBundle extends AbstractBundle
 {
     public function prependExtension(ContainerConfigurator $configurator, ContainerBuilder $container): void
     {
-        // La configuration de l'asset_mapper doit être faite manuellement dans config/packages/framework.yaml
-        // (méthode prependExtensionConfig() supprimée dans Symfony 8.x)
+        // Configure automatiquement l'Asset Mapper pour exposer les assets JS/CSS du bundle.
+        // Les fichiers sont servis sous le préfixe "select2vanilla" (ex: @select2vanilla/select2vanilla.js).
+        $configurator->extension('framework', [
+            'asset_mapper' => [
+                'paths' => [
+                    dirname(__DIR__, 1) . '/src/Resources/public' => 'select2vanilla',
+                ],
+            ],
+        ]);
     }
 }
