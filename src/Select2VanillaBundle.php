@@ -10,13 +10,23 @@ class Select2VanillaBundle extends AbstractBundle
 {
     public function prependExtension(ContainerConfigurator $configurator, ContainerBuilder $container): void
     {
-        // Configure automatiquement l'Asset Mapper pour exposer les assets JS/CSS du bundle.
-        // Les fichiers sont servis sous le préfixe "select2vanilla" (ex: @select2vanilla/select2vanilla.js).
-        $configurator->extension('framework', [
-            'asset_mapper' => [
-                'paths' => [
-                    dirname(__DIR__, 1) . '/src/Resources/public' => 'select2vanilla',
+        // Asset Mapper est optionnel : on ne déclare le mapping que si le
+        // composant est installé dans le projet hôte.
+        if (class_exists(\Symfony\Component\AssetMapper\AssetMapper::class)) {
+            $configurator->extension('framework', [
+                'asset_mapper' => [
+                    'paths' => [
+                        dirname(__DIR__) . '/public' => 'select2vanilla',
+                    ],
                 ],
+            ]);
+        }
+
+        // Le thème de formulaire du bundle est enregistré automatiquement :
+        // le projet hôte n'a plus besoin de le redéclarer.
+        $configurator->extension('twig', [
+            'form_themes' => [
+                '@Select2Vanilla/Form/fields.html.twig',
             ],
         ]);
     }

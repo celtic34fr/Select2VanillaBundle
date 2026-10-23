@@ -1,5 +1,22 @@
 # ChangeLog — Select2VanillaBundle
 
+## [0.1.1] — 2026-10-23
+
+### 🐛 Corrections
+
+- **Structure moderne du bundle** : `src/Resources/public`, `src/Resources/views` et `src/Resources/config` sont déplacés respectivement vers `public/`, `templates/` et `config/`. `assets:install` détecte désormais correctement les assets (`AbstractBundle::getPath()` pointe sur la racine du paquet).
+- **Thème de formulaire automatique** : `prependExtension()` enregistre `@Select2Vanilla/Form/fields.html.twig` dans `twig.form_themes`. La déclaration manuelle dans `config/packages/twig.yaml` n'est plus nécessaire.
+- **Mapping Asset Mapper conditionnel** : il n'est déclaré que si `symfony/asset-mapper` est installé, et pointe désormais vers `public/`.
+- **Configuration PHP** : `config/services.php` remplace `services.yaml`, ce qui supprime la dépendance implicite à `symfony/yaml` au chargement du bundle.
+- **Initialisation Turbo** : `select2-vanilla-init.js` écoute `DOMContentLoaded` **et** `turbo:load`, et marque chaque champ (`data-select2-initialized`) pour ne jamais l'initialiser deux fois.
+- **Pré-sélection** : les valeurs déjà sélectionnées côté serveur sont reprises dans les pills au chargement.
+- **Sélection multiple fiabilisée** : grâce à `celtic34fr/select2vanilla` 0.1.2, plus de doublon d'`<option>`, et la suppression d'une pill ne perd plus les autres sélections.
+- **Synchronisation des assets** : ajout de `bin/sync-assets.php` et du script Composer `sync-assets` pour régénérer la copie navigateur depuis la librairie.
+
+### 🧪 Tests
+
+- **11 tests unitaires** (contre 8) : ajout de la vérification de la structure `public/` / `templates/` et des chemins d'assets exposés par l'extension DI.
+
 ## [0.1.0] — 2026-10-20
 
 Première version du bundle Symfony `Select2VanillaBundle`.
@@ -29,18 +46,18 @@ Première version du bundle Symfony `Select2VanillaBundle`.
         },
         {
             "type": "vcs",
-            "url": "https://github.com/select2-vanilla/bundle.git"
+            "url": "https://github.com/celtic34fr/Select2VanillaBundle.git"
         }
     ],
     "require": {
-        "select2-vanilla/bundle": "*",
+        "celtic34fr/select2vanilla-bundle": "*",
         "celtic34fr/select2vanilla": "dev-master"
     }
 }
 ```
 
 ```bash
-composer require select2-vanilla/bundle celtic34fr/select2vanilla
+composer require celtic34fr/select2vanilla-bundle celtic34fr/select2vanilla
 ```
 
 2. Enregistrer le bundle dans `config/bundles.php` (automatique avec Symfony Flex).

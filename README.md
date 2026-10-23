@@ -6,34 +6,27 @@ Bundle Symfony permettant d'utiliser la librairie JavaScript vanilla [celtic34fr
 
 - `Select2Type` étend `ChoiceType` : supporte les choix via tableau et via entité Doctrine (`choice_loader`, `choice_class`, `choice_query_builder`).
 - Rendu Twig dédié (`select2_widget`) qui ajoute les attributs `data-*` nécessaires à l'initialisation JavaScript.
-- Gestion de la sélection multiple avec affichage des choix sous forme de "pills" et bouton de suppression personnalisable (`remove_icon_html`).
-- Assets JS/CSS de `celtic34fr/select2vanilla` exposés automatiquement via **Symfony Asset Mapper**.
+- Sélection multiple avec affichage des choix sous forme de « pills » et bouton de suppression personnalisable (`remove_icon_html`).
+- Assets JS/CSS de `celtic34fr/select2vanilla` embarqués dans le bundle et publiés via `assets:install`.
+- Mapping **Asset Mapper** automatique si `symfony/asset-mapper` est installé (optionnel).
+- **Thème de formulaire enregistré automatiquement** : plus besoin de le déclarer dans `config/packages/twig.yaml`.
+- Initialisation JavaScript compatible **Turbo** (`DOMContentLoaded` + `turbo:load`), idempotente.
 - Compatible **Symfony ^8.0** (testé avec Symfony 8.1).
-- **8 tests unitaires** couvrant le `Select2Type` et la configuration DI (tous passés).
+- **11 tests unitaires** (PHPUnit).
 
 ---
 
 ## Installation
 
-### Étape 1 — Installer le bundle et ses dépendances PHP
+### Étape 1 — Installer le bundle et sa dépendance JavaScript
 
-Dans le **projet hôte** (celui qui installe le bundle) :
-
-```bash
-composer require select2-vanilla/bundle celtic34fr/select2vanilla
-```
-
-### Étape 2 — Installer Symfony Asset Mapper (recommandé)
-
-Toujours dans le **projet hôte** :
+Dans le **projet hôte** :
 
 ```bash
-composer require symfony/asset-mapper
+composer require celtic34fr/select2vanilla-bundle celtic34fr/select2vanilla
 ```
 
-> `symfony/asset-mapper` est en `suggest` dans le bundle : il n'est pas installé automatiquement. C'est au projet hôte de l'ajouter s'il souhaite exposer les assets via Asset Mapper.
-
-### Étape 3 — Enregistrer le bundle
+### Étape 2 — Enregistrer le bundle
 
 Dans `config/bundles.php` (Symfony Flex le fait automatiquement) :
 
@@ -44,62 +37,39 @@ return [
 ];
 ```
 
-### Étape 4 — Activer le thème Twig
-
-Dans `config/packages/twig.yaml` :
-
-```yaml
-twig:
-    form_themes:
-        - '@Select2Vanilla/Form/fields.html.twig'
-```
-
-### Étape 5 — Configurer le mapping des assets (Asset Mapper)
-
-Dans `config/packages/select2_vanilla.yaml` (côté **projet hôte**) :
-
-```yaml
-prepend:
-    framework:
-        asset_mapper:
-            paths:
-                '%kernel.project_dir%/vendor/celtic34fr/select2vanilla/src': 'select2vanilla'
-
-select2_vanilla:
-    remove_icon_html: '<i class="fa fa-times" aria-hidden="true"></i>'
-    placeholder: 'Sélectionner...'
-    multiple: false
-```
-
-> Le bundle tente également de préconfigurer ce mapping automatiquement via son `Extension`, mais déclarer explicitement le bloc `prepend` ci-dessus garantit le bon fonctionnement dans le projet hôte.
-
-### Étape 6 — Importer et compiler les assets
-
-Dans `assets/app.js` (côté **projet hôte**) :
-
-```javascript
-import 'select2vanilla/select2vanilla.css';
-import 'select2vanilla/select2vanilla.js';
-```
-
-Puis compilez les assets :
+### Étape 3 — Publier les assets
 
 ```bash
-php bin/console asset-map:compile
+php bin/console assets:install
 ```
 
-Les assets sont alors servis sous le préfixe `bundles/select2vanilla/` par Asset Mapper.
+Les fichiers sont copiés dans :
 
-### Étape 7 — Inclure les assets dans votre layout
+```
+public/bundles/select2vanilla/css/select2vanilla.css
+public/bundles/select2vanilla/js/select2vanilla.js
+public/bundles/select2vanilla/js/select2-vanilla-init.js
+```
 
-Dans votre template de base (ex: `base.html.twig`, côté **projet hôte**) :
+> `assets:install` est généralement déjà exécuté automatiquement par les auto-scripts Composer de Symfony Flex.
+
+### Étape 4 — Inclure les assets dans le layout
+
+Dans votre template de base (ex. `base.html.twig`) :
 
 ```twig
-<link rel="stylesheet" href="{{ asset('bundles/select2vanilla/select2vanilla.css') }}" />
-<script src="{{ asset('bundles/select2vanilla/select2vanilla.js') }}" defer></script>
+<link rel="stylesheet" href="{{ asset('bundles/select2vanilla/css/select2vanilla.css') }}" />
+
+{# ... en bas de page ... #}
+<script src="{{ asset('bundles/select2vanilla/js/select2vanilla.js') }}" defer></script>
+<script src="{{ asset('bundles/select2vanilla/js/select2-vanilla-init.js') }}" defer></script>
 ```
 
-> L'initialisation automatique se fait au `DOMContentLoaded` sur tous les éléments `.js-select2-vanilla`.
+L'initialisation est automatique sur tous les éléments portant la classe `js-select2-vanilla`. Elle est rejouée après chaque navigation Turbo sans réinitialiser deux fois le même champ.
+
+### Étape 5 — Utiliser `Select2Type`
+
+Le thème de formulaire est enregistré par le bundle : aucune configuration Twig supplémentaire n'est nécessaire.
 
 ---
 
@@ -146,32 +116,70 @@ $builder->add('category', Select2Type::class, [
 ]);
 ```
 
-## Structure
+---
 
-Le code JavaScript/CSS de `celtic34fr/select2vanilla` est installé via Composer dans :
+## Configuration globale (optionnel)
 
-- `vendor/celtic34fr/select2vanilla/src/select2vanilla.js`
-- `vendor/celtic34fr/select2vanilla/src/select2vanilla.css`
+Dans `config/packages/select2_vanilla.yaml` :
 
-Ils sont exposés via Asset Mapper sous le préfixe `select2vanilla`.
+```yaml
+select2_vanilla:
+    remove_icon_html: '<i class="fa fa-times" aria-hidden="true"></i>'
+    placeholder: 'Sélectionner...'
+    multiple: false
+```
+
+Ces valeurs sont surchargeables au niveau de chaque champ.
+
+---
+
+## Asset Mapper (optionnel)
+
+Si le projet hôte utilise `symfony/asset-mapper`, le bundle déclare automatiquement le mapping de son dossier `public/` sous le préfixe `select2vanilla`. Les chemins logiques sont alors :
+
+```
+select2vanilla/css/select2vanilla.css
+select2vanilla/js/select2vanilla.js
+select2vanilla/js/select2-vanilla-init.js
+```
+
+`assets:install` reste la méthode recommandée pour un projet Symfony classique (sans Asset Mapper).
+
+---
+
+## Structure du bundle
+
+```
+bin/sync-assets.php          # resynchronise le JS/CSS depuis la librairie
+config/services.php          # services du bundle (config PHP, sans dépendance YAML)
+public/css/                  # CSS publié par assets:install
+public/js/                   # JS de la librairie + script d'initialisation
+src/                         # bundle, extension DI, Select2Type
+templates/Form/fields.html.twig
+tests/                       # tests PHPUnit
+```
+
+### Mainteneurs — synchroniser les assets
+
+Après une mise à jour de `celtic34fr/select2vanilla` :
+
+```bash
+composer update celtic34fr/select2vanilla
+composer sync-assets
+```
+
+Le script `bin/sync-assets.php` copie `select2vanilla.js` / `select2vanilla.css` et retire la ligne `export default` pour produire un script navigateur classique. Il accepte aussi un chemin source explicite :
+
+```bash
+php bin/sync-assets.php /chemin/vers/select2vanilla/src
+```
+
+---
 
 ## Lancer les tests
 
-Le bundle dispose de tests unitaires pour valider le bon fonctionnement du `Select2Type` et de la configuration DI.
-
-### Prérequis
-
-Les dépendances de développement sont requises :
-
 ```bash
-composer install --dev
-```
-
-### Exécution
-
-Depuis la racine du bundle :
-
-```bash
+composer install
 vendor/bin/phpunit
 ```
 
@@ -184,6 +192,7 @@ Les tests couvrent :
 - Le support des entités Doctrine
 - La validation et la récupération des données soumises
 - Le chargement de la configuration globale (`select2_vanilla.yaml`)
+- La structure moderne du bundle (`public/`, `templates/`) et les chemins d'assets de l'extension DI
 
 ---
 

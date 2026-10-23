@@ -14,8 +14,9 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 ### Tests unitaires existants (déjà implémentés et passés)
 - [x] `Select2TypeTest` : préfixe de bloc, options par défaut, icône de suppression, héritage `ChoiceType`, entité Doctrine, données soumises
 - [x] `ConfigurationTest` : configuration par défaut et personnalisée (`remove_icon_html`, `placeholder`, `multiple`)
+- [x] `Select2VanillaBundleTest` : structure moderne (`public/`, `templates/`), script navigateur sans `export default`, chemins d'assets de l'extension DI
 
-**Statut :** 8 tests unitaires, tous passés avec PHPUnit 11.5 sous Symfony 8.1.
+**Statut :** 11 tests unitaires, tous passés avec PHPUnit 11.5 sous Symfony 8.1.
 
 ### Tests à ajouter (priorité haute)
 
@@ -26,7 +27,7 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 
 #### 1.2 Extension DI (`Select2VanillaExtension`)
 - [ ] Tester que les paramètres sont bien définis dans le conteneur (`select2_vanilla.remove_icon_html`, etc.)
-- [ ] Tester le chargement du fichier `services.yaml`
+- [x] Tester le chargement du fichier `config/services.php`
 
 #### 1.3 Tests fonctionnels (intégration Symfony)
 - [ ] Créer un formulaire de test avec `Select2Type` et vérifier le rendu HTML
@@ -42,9 +43,9 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 ## 2. Fiabilisation du bundle (stabilisation)
 
 ### 2.1 Séparation des assets (vendoring vs Asset Mapper)
-- [ ] Documenter clairement que le bundle utilise le vendoring classique (`src/Resources/public/`)
-- [ ] Préparer une option pour pointer vers `vendor/celtic34fr/select2vanilla/src/` si l'application utilise Asset Mapper
-- [ ] Ajouter un script `post-install-cmd` ou `post-update-cmd` dans `composer.json` pour synchroniser les assets vendored depuis `vendor/` (optionnel)
+- [x] Documenter clairement que le bundle utilise le vendoring classique (`public/`)
+- [x] Déclarer automatiquement le mapping Asset Mapper vers `public/` si le composant est installé
+- [x] Ajouter un script `sync-assets` (`bin/sync-assets.php`) pour synchroniser les assets vendored depuis `vendor/`
 
 ### 2.2 Accessibilité (a11y)
 - [ ] Ajouter des rôles ARIA sur le conteneur custom généré par le thème Twig
@@ -91,11 +92,11 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 
 ## 4. Versions
 
-### Version 0.1.0 (actuelle — tag créé)
-- Bundle fonctionnel pour sélection simple et multiple
-- Support des tableaux et des entités Doctrine
-- Thème Twig et initialisation JavaScript automatique
-- 8 tests unitaires passés (PHPUnit 11.5, Symfony 8.1)
+### Version 0.1.1 (actuelle)
+- Structure moderne `public/` / `templates/` / `config/`, compatible `assets:install`
+- Thème Twig enregistré automatiquement, initialisation Turbo idempotente
+- Pré-sélection des valeurs serveur et sélection multiple fiabilisée
+- 11 tests unitaires passés (PHPUnit 11.5, Symfony 8.1)
 - Compatible Symfony ^8.0
 - Dépendance `celtic34fr/select2vanilla` en `dev-master`
 

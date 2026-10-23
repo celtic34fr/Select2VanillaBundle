@@ -26,12 +26,12 @@ Le bundle et sa dépendance JavaScript s'installent avec Composer. Déclarez d'a
         },
         {
             "type": "vcs",
-            "url": "https://github.com/select2-vanilla/bundle.git"
+            "url": "https://github.com/celtic34fr/Select2VanillaBundle.git"
         }
     ],
     "require": {
-        "select2-vanilla/bundle": "*",
-        "celtic34fr/select2vanilla": "^0.1"
+        "celtic34fr/select2vanilla-bundle": "*",
+        "celtic34fr/select2vanilla": "dev-master"
     }
 }
 ```
@@ -39,7 +39,7 @@ Le bundle et sa dépendance JavaScript s'installent avec Composer. Déclarez d'a
 Puis :
 
 ```bash
-composer require select2-vanilla/bundle celtic34fr/select2vanilla
+composer require celtic34fr/select2vanilla-bundle celtic34fr/select2vanilla
 ```
 
 ---
@@ -57,15 +57,9 @@ return [
 
 ---
 
-## 3. Activation du thème Twig
+## 3. Thème Twig (automatique)
 
-Le bundle fournit un thème Twig dédié pour le rendu du champ `select2_widget`. Activez-le dans `config/packages/twig.yaml` :
-
-```yaml
-twig:
-    form_themes:
-        - '@Select2Vanilla/Form/fields.html.twig'
-```
+Le bundle fournit un thème Twig dédié pour le rendu du champ `select2_widget`. Il est enregistré automatiquement par le bundle via `prependExtension()` : aucune configuration dans `config/packages/twig.yaml` n'est nécessaire.
 
 ---
 
@@ -112,7 +106,7 @@ Dans votre template de base (par exemple `templates/base.html.twig`), ajoutez le
 </html>
 ```
 
-> L'initialisation automatique se fait au chargement du DOM (`DOMContentLoaded`) sur tous les éléments portant la classe `js-select2-vanilla`. Vous n'avez rien à coder en JavaScript côté application.
+> L'initialisation automatique se fait au chargement du DOM (`DOMContentLoaded`) sur tous les éléments portant la classe `js-select2-vanilla`. Elle est également rejouée après chaque navigation Turbo (`turbo:load`), sans initialiser deux fois le même champ. Vous n'avez rien à coder en JavaScript côté application.
 
 ---
 
@@ -178,9 +172,9 @@ Ces valeurs sont surchargeables au niveau de chaque champ via les options du `Se
 
 ## 8. Compatibilité et stratégie d'assets
 
-- Le bundle utilise le **vendoring classique** : les fichiers JS/CSS sont intégrés dans le bundle et exposés via `assets:install`.
-- **Aucune dépendance à Asset Mapper**, npm ou Node.js n'est requise.
-- Le bundle fonctionne avec Symfony 5.x, 6.x, 7.x et antérieures.
+- Le bundle utilise le **vendoring classique** : les fichiers JS/CSS sont intégrés dans son dossier `public/` et exposés via `assets:install`.
+- **Aucune dépendance à Asset Mapper, npm ou Node.js n'est requise**. Asset Mapper reste supporté en option : le mapping est alors déclaré automatiquement.
+- Le bundle requiert **Symfony ^8.0** (testé avec Symfony 8.1).
 
 ---
 
@@ -189,7 +183,7 @@ Ces valeurs sont surchargeables au niveau de chaque champ via les options du `Se
 Pour mettre à jour le bundle et la librairie JavaScript :
 
 ```bash
-composer update select2-vanilla/bundle celtic34fr/select2vanilla
+composer update celtic34fr/select2vanilla-bundle celtic34fr/select2vanilla
 php bin/console assets:install
 ```
 
