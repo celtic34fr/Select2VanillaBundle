@@ -87,7 +87,7 @@ This file lists the tasks to accomplish to stabilize the bundle, improve test co
 
 ## 4. Versions
 
-### Version 0.1.1 (current)
+### Version 0.1.2 (current)
 - Modern `public/` / `templates/` / `config/` structure, compatible with `assets:install`
 - Automatically registered Twig theme, idempotent Turbo initialization
 - Server-side preselection and reliable multiple selection

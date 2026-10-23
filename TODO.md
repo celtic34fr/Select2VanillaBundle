@@ -92,7 +92,7 @@ Ce fichier recense les tâches à accomplir pour fiabiliser le bundle, améliore
 
 ## 4. Versions
 
-### Version 0.1.1 (actuelle)
+### Version 0.1.2 (actuelle)
 - Structure moderne `public/` / `templates/` / `config/`, compatible `assets:install`
 - Thème Twig enregistré automatiquement, initialisation Turbo idempotente
 - Pré-sélection des valeurs serveur et sélection multiple fiabilisée
