@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "396e008dc0cc48b1fcabde3d1ce14f38",
+    "content-hash": "51a9e4e0d25452118139d165c8aa8b47",
     "packages": [
         {
             "name": "celtic34fr/select2vanilla",
@@ -12,19 +12,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/celtic34fr/select2vanilla.git",
-                "reference": "b19bbb4d77a97c91073e7935f705aae2a1278785"
+                "reference": "8fe707ee46bb82d3e0b9ee6c12cac05b337ce034"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/celtic34fr/select2vanilla/zipball/b19bbb4d77a97c91073e7935f705aae2a1278785",
-                "reference": "b19bbb4d77a97c91073e7935f705aae2a1278785",
+                "url": "https://api.github.com/repos/celtic34fr/select2vanilla/zipball/8fe707ee46bb82d3e0b9ee6c12cac05b337ce034",
+                "reference": "8fe707ee46bb82d3e0b9ee6c12cac05b337ce034",
                 "shasum": ""
             },
             "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.0-dev"
+                    "dev-main": "0.1.x-dev"
                 }
             },
             "license": [
@@ -40,7 +40,7 @@
                 "issues": "https://github.com/celtic34fr/select2vanilla/issues",
                 "source": "https://github.com/celtic34fr/select2vanilla"
             },
-            "time": "2026-10-19T07:00:52+00:00"
+            "time": "2026-10-21T08:02:53+00:00"
         },
         {
             "name": "psr/cache",
